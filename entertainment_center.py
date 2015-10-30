@@ -2,7 +2,15 @@
 import media
 import fresh_tomatoes
 
-# Instatiating all the movies
+# Movie's Class Constructor takes 5 required arguments and 1 sixth optional argument
+# 1st: The Movie Title
+# 2nd: The release Year
+# 3rd: The Storyline
+# 4th: The Poster Image URL
+# 5th: The Trailer Youtube URL
+# 6th: The Number of Oscar awards won (optional default = 0)
+
+# Instantiating all the movies
 avatar = media.Movie(
     "Avatar",
     "2009",
@@ -157,5 +165,6 @@ movies = [
 ]
 
 # Generate the HTML file that displays all the movies info
+# and open it in a new browser tab
 fresh_tomatoes.open_movies_page(movies)
 
