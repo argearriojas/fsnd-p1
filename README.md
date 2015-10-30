@@ -3,7 +3,7 @@
 
 This is a set of python scripts that may be used to generate an HTML like the one provided in this repo.
 
-Link to the generated HTML: https://rawgit.com/argx/fsnd-p1/master/fresh_tomatoes.html
+Link to the generated HTML: http://rawgit.com/argx/fsnd-p1/master/fresh_tomatoes.html
 
 ## Example
 
