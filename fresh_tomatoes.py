@@ -63,6 +63,10 @@ main_page_head = '''
             width: 220px;
             margin-left: auto;
             margin-right: auto;
+            background-image: 
+                url(http://digital.films.com/images/animated_loading_icon.gif);
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .storyline-container {
             position: absolute;
@@ -99,6 +103,15 @@ main_page_head = '''
         }
     </style>
     <script type="text/javascript" charset="utf-8">
+        // Hide some elements until the image that covers then is loaded
+        $('.cover-img, .storyline-container, .awards, .trailer-hint')
+            .css("opacity","0");
+        // Show hidden elements after image is loaded
+        $('.cover-img').load(function(){
+            $(this).animate({opacity: 1});
+            $(this).siblings().animate({opacity: 1});
+            $(this).parent().css('background-image','');
+        });
         // Pause the video when the modal is closed
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
             // Remove the src so the player itself gets removed, as this is the only
@@ -121,6 +134,12 @@ main_page_head = '''
           $('.movie-tile').hide().first().show("fast", function showNext() {
             $(this).next("div").show("fast", showNext);
           });
+        });
+        // Make sure everything is visible after full document is loaded        
+        $(window).load(function () {
+            $('.cover-img, .storyline-container, .awards, .trailer-hint')
+                .css("opacity","1");
+            $('.diptic').css('background-image','');
         });
     </script>
 </head>
