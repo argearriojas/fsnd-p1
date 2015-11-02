@@ -2,7 +2,7 @@
 import media
 import fresh_tomatoes
 
-# Movie's Class Constructor takes 5 required arguments 
+# Movie's Class Constructor takes 5 required arguments
 #   and 1 sixth optional argument
 # 1st: The Movie Title
 # 2nd: The release Year
@@ -210,11 +210,11 @@ pirates = media.Movie(
 
 # The list with all the movies
 movies = [
-    avatar,hgttg,gladiator,inception,limitless,pulpfiction,fightclub,
-    forrestgump,thematrix,pirates,lifeisbeautiful,spiritedaway,thegreenmile,
-    backtothefuture,walle,braveheart,toystory,up,diehard,vforvendetta,
-    howtotrainyourdragon,thesixthsense,groundhogday,kingsspeech
-]
+    avatar, hgttg, gladiator, inception, limitless, pulpfiction, fightclub,
+    forrestgump, thematrix, pirates, lifeisbeautiful, spiritedaway,
+    thegreenmile, backtothefuture, walle, braveheart, toystory, up, diehard,
+    vforvendetta, howtotrainyourdragon, thesixthsense, groundhogday,
+    kingsspeech]
 
 # Generate the HTML file that displays all the movies info
 # and open it in a new browser tab

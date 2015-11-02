@@ -45,8 +45,12 @@ main_page_head = '''
         }
         .movie-tile:hover {
             transition-delay: 0s;
-            background-color: #EEE;
+            background-color: #5B69FF;
             cursor: pointer;
+            color: #FFF;
+        }
+        .movie-tile:hover h2 small{
+            color: #FFF;
         }
         .movie-tile .cover-img {
             transition: all .6s 1s ease-in-out;
@@ -63,10 +67,22 @@ main_page_head = '''
             width: 220px;
             margin-left: auto;
             margin-right: auto;
-            background-image: 
-                url(http://digital.films.com/images/animated_loading_icon.gif);
             background-position: center;
             background-repeat: no-repeat;
+        }
+        .movie-tile .storyline-container,
+        .movie-tile .trailer-hint,
+        .movie-tile .awards,
+        .movie-tile small,
+        .movie-tile h2 {
+            transition: all .4s 1s;
+        }
+        .movie-tile:hover .storyline-container,
+        .movie-tile:hover .trailer-hint,
+        .movie-tile:hover .awards,
+        .movie-tile:hover small,
+        .movie-tile:hover h2 {
+            transition-delay: 0s;
         }
         .storyline-container {
             position: absolute;
@@ -103,15 +119,6 @@ main_page_head = '''
         }
     </style>
     <script type="text/javascript" charset="utf-8">
-        // Hide some elements until the image that covers then is loaded
-        $('.cover-img, .storyline-container, .awards, .trailer-hint')
-            .css("opacity","0");
-        // Show hidden elements after image is loaded
-        $('.cover-img').load(function(){
-            $(this).animate({opacity: 1});
-            $(this).siblings().animate({opacity: 1});
-            $(this).parent().css('background-image','');
-        });
         // Pause the video when the modal is closed
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
             // Remove the src so the player itself gets removed, as this is the only
@@ -126,7 +133,8 @@ main_page_head = '''
               'id': 'trailer-video',
               'type': 'text-html',
               'src': sourceUrl,
-              'frameborder': 0
+              'frameborder': 0,
+              'allowfullscreen': true
             }));
         });
         // Animate in the movies when the page loads
@@ -135,7 +143,24 @@ main_page_head = '''
             $(this).next("div").show("fast", showNext);
           });
         });
-        // Make sure everything is visible after full document is loaded        
+        // Set image load animations
+        $(document).ready(function () {
+            // Hide some elements until the image that covers then is loaded
+            $('.cover-img, .storyline-container, .awards, .trailer-hint')
+                .css("opacity","0");
+            // Set loading animation to diptic wrapper
+            $('.diptic')
+                .css('background-image',
+                     'url(http://digital.films.com/images/animated_loading_icon.gif)'
+                );
+            // Show hidden elements after image is loaded
+            $('.cover-img').load(function(){
+                $(this).css('opacity','1');
+                $(this).siblings().css('opacity','1');
+                $(this).parent().css('background-image','');
+            });
+        });
+        // Make sure everything is visible after full document is loaded
         $(window).load(function () {
             $('.cover-img, .storyline-container, .awards, .trailer-hint')
                 .css("opacity","1");
@@ -208,10 +233,10 @@ def create_movie_tiles_content(movies):
             r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
         trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                               else None)
-                       
+
         # Make img tags for awards count
         awards_imgs = ''
-        for n in range( 0, movie.oscars_won ):
+        for n in range(0, movie.oscars_won):
             awards_imgs += '<img src="oscar_icon.png" width="18" height="50"/>'
 
         # Append the tile for the movie with its content filled in

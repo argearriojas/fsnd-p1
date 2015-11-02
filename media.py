@@ -19,4 +19,3 @@ class Movie():
         self.trailer_youtube_url = trailer_youtube
         # Number of oscars the Movie won
         self.oscars_won = oscars_won
-
